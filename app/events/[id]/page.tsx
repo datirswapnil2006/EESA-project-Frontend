@@ -1,18 +1,21 @@
 "use client"
 
+import * as React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ArrowLeft, Calendar, Clock, MapPin, Users, Share2, Heart, CheckCircle } from "lucide-react"
-import { useState } from "react"
 
 export default function EventDetailPage({ params }: { params: { id: string } }) {
-  const [isAttending, setIsAttending] = useState(false)
-  const [liked, setLiked] = useState(false)
+  const resolvedParams = React.use(params)
+  const id = resolvedParams.id
 
-  // Mock data - in a real app, fetch based on params.id
+  const [isAttending, setIsAttending] = React.useState(false)
+  const [liked, setLiked] = React.useState(false)
+
+  // Mock data - in a real app, fetch based on id
   const event = {
-    id: params.id,
+    id,
     title: "Monthly Meetup",
     description: "Join us for our monthly community meetup and networking session.",
     fullDescription: `Our monthly meetup is a great opportunity to connect with fellow community members, share updates on projects, and discuss new ideas.

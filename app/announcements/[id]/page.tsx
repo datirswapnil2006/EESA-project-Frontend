@@ -1,17 +1,20 @@
 "use client"
 
+import * as React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ArrowLeft, Calendar, User, Share2, Heart } from "lucide-react"
-import { useState } from "react"
 
 export default function AnnouncementDetailPage({ params }: { params: { id: string } }) {
-  const [liked, setLiked] = useState(false)
+  const resolvedParams = React.use(params)
+  const id = resolvedParams.id
 
-  // Mock data - in a real app, fetch based on params.id
+  const [liked, setLiked] = React.useState(false)
+
+  // Mock data - in a real app, fetch based on id
   const announcement = {
-    id: params.id,
+    id,
     title: "New Project Submission Guidelines",
     category: "Updates",
     author: "Admin",
