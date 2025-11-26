@@ -9,9 +9,12 @@ import { ArrowLeft, Mail, Linkedin, Github, MapPin, Award, Code, Calendar, Messa
 import { allMembers, Member } from "../data/members-data"
 
 
-export default function MemberDetailPage({ params }: { params: { id: string } }) {
+export default async function MemberDetailPage({ params }: { params: any }) {
+  // `params` may be a Promise in Next 16; await to safely access `id`
+  const resolvedParams = await params
+  const id = resolvedParams?.id
 
-  const member = allMembers.find((m: Member) => String(m.id) === String(params.id)) // FIXED MATCH
+  const member = allMembers.find((m: Member) => String(m.id) === String(id))
 
   if (!member) {
     return notFound()
